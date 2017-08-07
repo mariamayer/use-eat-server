@@ -1,21 +1,26 @@
-var express = require('express');
-var session = require('express-session');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var unirest = require('unirest');
-var passport   = require('passport');
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const unirest = require('unirest');
+const passport   = require('passport');
+const mongoose = require('mongoose');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var recipes = require('./routes/recipes');
-var reviews = require('./routes/reviews');
-var cors = require('cors');
+const index = require('./routes/index');
+const users = require('./routes/users');
+const recipes = require('./routes/recipes');
+const reviews = require('./routes/reviews');
+const cors = require('cors');
 
-// database connection
-require('./configs/database');
+// connect to the database
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_URI);
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 var passportSetup = require('./configs/passport');
 passportSetup(passport);
 
