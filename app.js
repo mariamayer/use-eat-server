@@ -19,13 +19,16 @@ const cors = require('cors');
 require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI);
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+
 var passportSetup = require('./configs/passport');
 passportSetup(passport);
 
-var app = express();
+const app = express();
+const port = (process.env.PORT || 5000);
 
+app.listen(port, function(){
+    console.log("Listening on port " + port);
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
