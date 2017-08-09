@@ -19,7 +19,10 @@ router.post('/', (req, res, next) => {
 
     recipe.save((err) => {
       res.json({
-        message: 'New review created!'
+        message: 'New review created!',
+        content: req.body.content,
+        stars: req.body.rating,
+        author: req.body.author,
       });
     });
   });

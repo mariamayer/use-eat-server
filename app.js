@@ -15,20 +15,13 @@ const recipes = require('./routes/recipes');
 const reviews = require('./routes/reviews');
 const cors = require('cors');
 
+const app = express();
 // connect to the database
 require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI);
-
-
 var passportSetup = require('./configs/passport');
 passportSetup(passport);
 
-const app = express();
-const port = (process.env.PORT || 5000);
-
-app.listen(port, function(){
-    console.log("Listening on port " + port);
-});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

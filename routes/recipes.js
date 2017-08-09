@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var unirest = require('unirest');
+const express = require('express');
+const router = express.Router();
+const unirest = require('unirest');
 
 const Recipe = require('../models/recipe');
 
